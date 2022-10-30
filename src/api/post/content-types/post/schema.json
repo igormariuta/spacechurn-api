@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Post",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "previewImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "posts"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "post"
+    },
+    "rating": {
+      "type": "integer",
+      "default": 0
+    },
+    "slug": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "tags": {
+      "type": "string",
+      "regex": "(,?[a-zA-Z][a-zA-Z0-9]*,?)"
+    },
+    "viewCount": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
